@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Malla Curricular de Sociología - Universidad Nacional de Colombia</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malla Curricular - Sociología UN</title>
 </head>
 <body>
-
-  <h1>
-    Malla Curricular de Sociología - Universidad Nacional de Colombia<br>
-    <em>Creada por: Joaquín L. Cortés</em>
-  </h1>
-
-  <div id="malla" class="grid-container"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+    <div class="container">
+        <h1>Malla Curricular - Sociología</h1>
+        <h2 style="text-align: center; color: #7f8c8d; margin-bottom: 30px;">Universidad Nacional de Colombia</h2>
+        
+        <div class="leyenda">
+            <div class="leyenda-item">
+                <div class="leyenda-color disponible"></div>
+                <span>Disponible</span>
+            </div>
+            <div class="leyenda-item">
+                <div class="leyenda-color aprobado-leyenda"></div>
+                <span>Aprobado</span>
+            </div>
+            <div class="leyenda-item">
+                <div class="leyenda-color bloqueado-leyenda"></div>
+                <span>Bloqueado</span>
+            </div>
+        </div>
+        
+        <div class="stats" id="stats"></div>
+        
+        <div id="malla"></div>
+        
+        <button class="reset-btn" onclick="resetearMalla()">Resetear Malla</button>
+    </div>
+    
