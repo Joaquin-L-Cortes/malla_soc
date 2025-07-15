@@ -1,130 +1,155 @@
-const malla = {
-  "1° semestre": [
-    { nombre: "Introducción a la Sociología", id: "intro" },
-    { nombre: "Sociedad Colombiana del Siglo XIX", id: "sigloxix" },
-    { nombre: "Software Aplicado a las Ciencias Sociales", id: "software" },
-    { nombre: "Estructura de la Sociedad Moderna I", id: "modernai" },
-    { nombre: "Inglés I", id: "ingle1" }
-  ],
-  "2° semestre": [
-    { nombre: "Análisis de Datos Cuantitativos", id: "datos" },
-    { nombre: "Sociedad Colombiana del Siglo XX", id: "sigloxx" },
-    { nombre: "Teoría Sociológica: Durkheim", id: "durkheim" },
-    { nombre: "Estructura de la Sociedad Moderna II", id: "modernaii" },
-    { nombre: "Inglés II", id: "ingle2" }
-  ],
-  "3° semestre": [
-    { nombre: "Fisiología de Sistemas", id: "fisioSistemas", prerreq: ["fisioGeneral"] },
-    { nombre: "Bases Integradas de Infectología, Inmunología y Farmacología General", id: "inmunofarma", prerreq: ["fisioGeneral", "neuroanato"] },
-    { nombre: "Examen Kinésico Básico", id: "examenKinesico", prerreq: ["anato1", "anato2", "biomecanica"] },
-    { nombre: "Control y Aprendizaje Motor", id: "controlMotor" },
-    { nombre: "Fundamentos de la Investigación Científica", id: "fundamentosInvestigacion" },
-    { nombre: "Educación Física 1", id: "educFisica1" }
-  ],
-  "4° semestre": [
-    { nombre: "Fisiopatología y Farmacología de Sistemas", id: "fisiofarma", prerreq: ["inmunofarma", "fisioSistemas"] },
-    { nombre: "Examen de la Condición Física y la Conducta Motora", id: "examenFisicaConducta", prerreq: ["examenKinesico"] },
-    { nombre: "Procedimientos Terapéuticos Básicos y Generales", id: "procedimientos", prerreq: ["movimiento", "examenKinesico"] },
-    { nombre: "Kinesiología del Desarrollo Psicomotor", id: "desarrolloPsicomotor", prerreq: ["controlMotor"] },
-    { nombre: "Lectura Crítica de Artículos Científicos", id: "lecturaCritica", prerreq: ["lecturaComprensiva"] },
-    { nombre: "Análisis Epidemiológico", id: "epidemiologia" },
-    { nombre: "Análisis Bioinstrumental del Movimiento Humano", id: "bioinstrumental" }
-  ],
-  "5° semestre": [
-    { nombre: "Efectos de la actividad Física en la salud", id: "efectosFisica", prerreq: ["examenFisicaConducta", "fisiofarma"] },
-    { nombre: "Evaluación e Intervención en la Neurokinesiología 1", id: "neurokine1", prerreq: ["desarrolloPsicomotor"] },
-    { nombre: "Evaluación e Intervención en Cuidados Respiratorios 1", id: "respiratorio1", prerreq: ["fisiofarma"] },
-    { nombre: "Evaluación e Intervención en Musculoesquelético 1", id: "musculoesqueletico1", prerreq: ["procedimientos"] },
-    { nombre: "Revisión Bibliográfica", id: "revisionBiblio", prerreq: ["lecturaCritica"] },
-    { nombre: "Análisis del Modelo de Salud Chileno", id: "modeloSalud", prerreq: ["epidemiologia"] },
-    { nombre: "Modulo Integrado Interdisciplinario y Multiprofesional 1", id: "modulo1" },
-    { nombre: "Educación Física 2", id: "educFisica2", prerreq: ["educFisica1"] },
-    { nombre: "Inglés 4", id: "ingles4" }
-  ],
-  "6° semestre": [
-    { nombre: "Evaluación e Intervención en la Neurokinesiología 2", id: "neurokine2", prerreq: ["neurokine1"] },
-    { nombre: "Evaluación e Intervención en Cuidados Respiratorios 2", id: "respiratorio2", prerreq: ["respiratorio1"] },
-    { nombre: "Evaluación e Intervención en Musculoesquelético 2", id: "musculoesqueletico2", prerreq: ["musculoesqueletico1"] },
-    { nombre: "Razonamiento Clínico", id: "razonamiento", prerreq: ["respiratorio1", "musculoesqueletico1", "neurokine1"] },
-    { nombre: "Diseño y Formulación de Proyectos de Investigación", id: "disenoInvestigacion", prerreq: ["revisionBiblio"] },
-    { nombre: "Responsabilidad del Ejercicio Profesional", id: "responsabilidad" },
-    { nombre: "Actividad Física y Deportes", id: "actividadFisica", prerreq: ["educFisica2", "efectosFisica"] }
-  ],
-  "7° semestre": [
-    { nombre: "Intervención Profesional en Contexto 1", id: "contexto1", prerreq: ["efectosFisica", "respiratorio2", "musculoesqueletico2", "neurokine2"] },
-    { nombre: "Estrategias Deportivas y Recreativas", id: "estrategias", prerreq: ["actividadFisica"] },
-    { nombre: "Análisis de la Relación Persona Entorno", id: "personaEntorno", prerreq: ["respiratorio2", "musculoesqueletico2", "neurokine2"] },
-    { nombre: "Determinantes Sociales de la Salud", id: "determinantes", prerreq: ["modeloSalud"] },
-    { nombre: "Ejecución de Proyectos de Investigación 1", id: "ejecucion1", prerreq: ["disenoInvestigacion"] },
-    { nombre: "Conceptos Básicos de Administración en Salud", id: "adminSalud1" },
-    { nombre: "Metodologías de Enseñanza Aprendizaje", id: "metodologias" }
-  ],
-  "8° semestre": [
-    { nombre: "Intervención Profesional en Contexto 2", id: "contexto2", prerreq: ["efectosFisica", "respiratorio2", "musculoesqueletico2", "neurokine2"] },
-    { nombre: "Estrategias Deportivas y Recreativas Aplicadas", id: "estrategiasAplicadas", prerreq: ["estrategias"] },
-    { nombre: "Evaluación Ergonómica", id: "ergonomia", prerreq: ["personaEntorno"] },
-    { nombre: "Programas de Promoción y Prevención en Salud", id: "promocion", prerreq: ["determinantes"] },
-    { nombre: "Ejecución de Proyectos de Investigación 2", id: "ejecucion2", prerreq: ["ejecucion1"] },
-    { nombre: "Proyectos de Emprendimientos", id: "emprendimientos", prerreq: ["adminSalud1"] },
-    { nombre: "Aplicación Básica de Metodologías Docentes", id: "aplicacionMetodologias", prerreq: ["metodologias"] },
-    { nombre: "Modulo Integrado Interdisciplinario y Multiprofesional 2", id: "modulo2", prerreq: ["modulo1"] }
-  ],
-  "5° año (anual)": [
-    { nombre: "Intervención Profesional 1", id: "intervencion1", prerreq: ["contexto2"] },
-    { nombre: "Intervención Profesional 2", id: "intervencion2", prerreq: ["intervencion1"] },
-    { nombre: "Proyectos de Intervención Ergonómica", id: "proyectoErgo", prerreq: ["ergonomia"] },
-    { nombre: "Intervención en Salud Comunitaria", id: "saludComunitaria", prerreq: ["promocion"] },
-    { nombre: "Cursos de Profundización Disciplinar y Profesional", id: "profundizacion", prerreq: ["contexto1", "contexto2"] },
-    { nombre: "Comunicación Científica", id: "comunicacion", prerreq: ["ejecucion2"] },
-    { nombre: "Administración en Salud", id: "adminSalud2", prerreq: ["adminSalud1"] }
-  ]
-};
+<script>
+        const malla = {
+            "Semestre 1": [
+                { nombre: "Introducción a la Sociología", id: "intro_sociologia", creditos: 3 },
+                { nombre: "Sociedad Colombiana del Siglo XIX", id: "sociedad_xix", creditos: 3 },
+                { nombre: "Software Aplicado a las Ciencias Sociales", id: "software", creditos: 3 },
+                { nombre: "Estructura de la Sociedad Moderna I", id: "estructura_i", creditos: 3 },
+                { nombre: "Inglés I", id: "ingles_i", creditos: 3 }
+            ],
+            "Semestre 2": [
+                { nombre: "Análisis de Datos Cuantitativos", id: "analisis_datos", creditos: 3 },
+                { nombre: "Sociedad Colombiana del Siglo XX", id: "sociedad_xx", creditos: 3 },
+                { nombre: "Teoría Sociológica: Durkheim", id: "durkheim", creditos: 3 },
+                { nombre: "Estructura de la Sociedad Moderna II", id: "estructura_ii", creditos: 3 },
+                { nombre: "Inglés II", id: "ingles_ii", creditos: 3, prerreq: ["ingles_i"] }
+            ],
+            "Semestre 3": [
+                { nombre: "Demografía", id: "demografia", creditos: 3, prerreq: ["analisis_datos", "intro_sociologia", "sociedad_xix", "software"] },
+                { nombre: "Espacio y Sociedad", id: "espacio_sociedad", creditos: 3 },
+                { nombre: "Optativa: Sociologías Temáticas I", id: "tematicas_i", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i"] },
+                { nombre: "Teoría Sociológica: Marx", id: "marx", creditos: 3 },
+                { nombre: "Libre Elección I", id: "libre_i", creditos: 3 },
+                { nombre: "Inglés III", id: "ingles_iii", creditos: 3, prerreq: ["ingles_i", "ingles_ii"] }
+            ],
+            "Semestre 4": [
+                { nombre: "Métodos Cuantitativos", id: "metodos_cuanti", creditos: 3, prerreq: ["analisis_datos", "intro_sociologia", "sociedad_xix", "software"] },
+                { nombre: "Taller I: Documentación e Investigación", id: "taller_i", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i", "ingles_i"] },
+                { nombre: "Optativa: Sociologías Temáticas II", id: "tematicas_ii", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i"] },
+                { nombre: "Teoría Sociológica: Weber", id: "weber", creditos: 3 },
+                { nombre: "Libre Elección II", id: "libre_ii", creditos: 3 },
+                { nombre: "Inglés IV", id: "ingles_iv", creditos: 3, prerreq: ["ingles_i", "ingles_ii", "ingles_iii"] }
+            ],
+            "Semestre 5": [
+                { nombre: "Indicadores Sociales", id: "indicadores", creditos: 3, prerreq: ["analisis_datos", "intro_sociologia", "sociedad_xix", "software"] },
+                { nombre: "Optativa: Sociologías Especiales I", id: "especiales_i", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i", "durkheim", "marx", "weber"] },
+                { nombre: "Optativa: Sociologías Temáticas III", id: "tematicas_iii", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i"] },
+                { nombre: "Optativa: Teorías Sociológicas I", id: "teorias_i", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i", "durkheim", "marx", "weber"] },
+                { nombre: "Libre Elección III", id: "libre_iii", creditos: 3 },
+                { nombre: "Libre Elección IV", id: "libre_iv", creditos: 3 }
+            ],
+            "Semestre 6": [
+                { nombre: "Métodos Cualitativos", id: "metodos_cuali", creditos: 3, prerreq: ["analisis_datos", "intro_sociologia", "sociedad_xix", "software"] },
+                { nombre: "Optativa: Sociologías Especiales II", id: "especiales_ii", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i", "durkheim", "marx", "weber"] },
+                { nombre: "Pensamiento Sociológico Latinoamericano", id: "pensamiento_latam", creditos: 3 },
+                { nombre: "Optativa: Teorías Sociológicas II", id: "teorias_ii", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i", "durkheim", "marx", "weber"] },
+                { nombre: "Libre Elección V", id: "libre_v", creditos: 3 },
+                { nombre: "Libre Elección VI", id: "libre_vi", creditos: 3 }
+            ],
+            "Semestre 7": [
+                { nombre: "Optativa: Métodos de Investigación", id: "metodos_invest", creditos: 3 },
+                { nombre: "Optativa: Sociologías Especiales III", id: "especiales_iii", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i", "durkheim", "marx", "weber"] },
+                { nombre: "Taller 2: Proyecto de Investigación", id: "taller_ii", creditos: 8, prerreq: ["taller_i", "demografia", "metodos_cuanti", "indicadores", "metodos_cuali", "durkheim", "marx", "weber", "teorias_i", "teorias_ii", "tematicas_i", "tematicas_ii", "especiales_i", "especiales_ii"] },
+                { nombre: "Optativa: Teorías Sociológicas III", id: "teorias_iii", creditos: 3, prerreq: ["intro_sociologia", "sociedad_xix", "software", "estructura_i", "durkheim", "marx", "weber"] },
+                { nombre: "Libre Elección VII", id: "libre_vii", creditos: 3 }
+            ],
+            "Semestre 8": [
+                { nombre: "Trabajo de Grado", id: "trabajo_grado", creditos: 10, prerreq: ["taller_ii"] },
+                { nombre: "Libre Elección VIII", id: "libre_viii", creditos: 3 },
+                { nombre: "Libre Elección IX", id: "libre_ix", creditos: 3 },
+                { nombre: "Libre Elección X", id: "libre_x", creditos: 3 }
+            ]
+        };
 
-const estado = JSON.parse(localStorage.getItem("estadoMalla")) || {};
+        // Usar variables en memoria en lugar de localStorage
+        let estado = {};
 
-function guardarEstado() {
-  localStorage.setItem("estadoMalla", JSON.stringify(estado));
-}
+        function guardarEstado() {
+            // En lugar de localStorage, mantenemos el estado en memoria
+            // localStorage.setItem("estadoMalla", JSON.stringify(estado));
+        }
 
-function crearMalla() {
-  const contenedor = document.getElementById("malla");
-  contenedor.innerHTML = "";
+        function calcularEstadisticas() {
+            const totalMaterias = Object.values(malla).flat().length;
+            const totalCreditos = Object.values(malla).flat().reduce((sum, ramo) => sum + ramo.creditos, 0);
+            const aprobadas = Object.values(estado).filter(Boolean).length;
+            const creditosAprobados = Object.values(malla).flat()
+                .filter(ramo => estado[ramo.id])
+                .reduce((sum, ramo) => sum + ramo.creditos, 0);
+            
+            return {
+                totalMaterias,
+                totalCreditos,
+                aprobadas,
+                creditosAprobados,
+                porcentaje: Math.round((aprobadas / totalMaterias) * 100)
+            };
+        }
 
-  Object.entries(malla).forEach(([semestre, ramos]) => {
-    const columna = document.createElement("div");
-    columna.className = "semestre";
+        function actualizarEstadisticas() {
+            const stats = calcularEstadisticas();
+            document.getElementById('stats').innerHTML = `
+                <span>Materias: ${stats.aprobadas}/${stats.totalMaterias}</span>
+                <span>Créditos: ${stats.creditosAprobados}/${stats.totalCreditos}</span>
+                <span>Progreso: ${stats.porcentaje}%</span>
+            `;
+        }
 
-    const titulo = document.createElement("h2");
-    titulo.textContent = semestre;
-    columna.appendChild(titulo);
+        function crearMalla() {
+            const contenedor = document.getElementById("malla");
+            contenedor.innerHTML = "";
 
-    ramos.forEach(ramo => {
-      const div = document.createElement("div");
-      div.className = "ramo";
-      div.textContent = ramo.nombre;
+            Object.entries(malla).forEach(([semestre, ramos]) => {
+                const columna = document.createElement("div");
+                columna.className = "semestre";
 
-      const aprobado = estado[ramo.id];
-      const prerreqCumplidos = (ramo.prerreq || []).every(id => estado[id]);
+                const titulo = document.createElement("h2");
+                titulo.textContent = semestre;
+                columna.appendChild(titulo);
 
-      if (aprobado) {
-        div.classList.add("aprobado");
-      } else if (!prerreqCumplidos && ramo.prerreq) {
-        div.classList.add("bloqueado");
-      }
+                ramos.forEach(ramo => {
+                    const div = document.createElement("div");
+                    div.className = "ramo";
+                    div.innerHTML = `
+                        <div>${ramo.nombre}</div>
+                        <div class="creditos">${ramo.creditos} créditos</div>
+                    `;
 
-      div.addEventListener("click", () => {
-        if (div.classList.contains("bloqueado")) return;
+                    const aprobado = estado[ramo.id];
+                    const prerreqCumplidos = (ramo.prerreq || []).every(id => estado[id]);
 
-        estado[ramo.id] = !estado[ramo.id];
-        guardarEstado();
+                    if (aprobado) {
+                        div.classList.add("aprobado");
+                    } else if (!prerreqCumplidos && ramo.prerreq) {
+                        div.classList.add("bloqueado");
+                    }
+
+                    div.addEventListener("click", () => {
+                        if (div.classList.contains("bloqueado")) return;
+
+                        estado[ramo.id] = !estado[ramo.id];
+                        guardarEstado();
+                        crearMalla();
+                        actualizarEstadisticas();
+                    });
+
+                    columna.appendChild(div);
+                });
+
+                contenedor.appendChild(columna);
+            });
+        }
+
+        function resetearMalla() {
+            if (confirm("¿Estás seguro de que deseas resetear toda la malla?")) {
+                estado = {};
+                guardarEstado();
+                crearMalla();
+                actualizarEstadisticas();
+            }
+        }
+
+        // Inicializar la malla
         crearMalla();
-      });
-
-      columna.appendChild(div);
-    });
-
-    contenedor.appendChild(columna);
-  });
-}
-
-crearMalla();
+        actualizarEstadisticas();
+    </script>
