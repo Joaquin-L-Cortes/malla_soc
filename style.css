@@ -63,17 +63,18 @@ h1 {
 .ramo.aprobado {
     background: #4a6b4a;
     border-left-color: #5a8a5a;
-    color: #d0e0d0;
+    color: #000000;
 }
 
 .ramo.aprobado:hover {
     background: #5a7b5a;
+    color: #000000;
 }
 
 .ramo.bloqueado {
     background: #6b4a4a;
     border-left-color: #8a5a5a;
-    color: #e0d0d0;
+    color: #000000;
     cursor: not-allowed;
     opacity: 0.7;
 }
@@ -82,6 +83,15 @@ h1 {
     transform: none;
     box-shadow: none;
     background: #6b4a4a;
+    color: #000000;
+}
+
+.ramo.aprobado .creditos {
+    color: #333333;
+}
+
+.ramo.bloqueado .creditos {
+    color: #333333;
 }
 
 .creditos {
