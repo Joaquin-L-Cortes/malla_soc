@@ -60,11 +60,12 @@ const malla = {
     ]
 };
 
-// Usar localStorage para persistir el estado
-const estado = JSON.parse(localStorage.getItem("estadoMalla")) || {};
+// Simular localStorage con un objeto en memoria
+const estado = {};
 
 function guardarEstado() {
-    localStorage.setItem("estadoMalla", JSON.stringify(estado));
+    // En un entorno real, esto sería localStorage.setItem("estadoMalla", JSON.stringify(estado));
+    // Para este ejemplo, mantenemos el estado en memoria
 }
 
 function calcularEstadisticas() {
@@ -145,6 +146,10 @@ function resetearMalla() {
         crearMalla();
         actualizarEstadisticas();
     }
+}
+
+function imprimirMalla() {
+    window.print();
 }
 
 // Inicializar la malla
