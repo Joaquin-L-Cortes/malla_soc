@@ -1,20 +1,17 @@
 const malla = {
   "1° semestre": [
-    { nombre: "Bases Integradas de Química, Bioquímica, Biología Celular y Genética", id: "bioquimica" },
-    { nombre: "Anatomía estructural y funcional 1", id: "anato1" },
-    { nombre: "Estructura y Función Tisular", id: "tisular" },
-    { nombre: "Física", id: "fisica" },
-    { nombre: "Estrategias de Búsqueda Bibliográfica", id: "busqueda" },
-    { nombre: "Introducción a la Kinesiología", id: "introKine" }
+    { nombre: "Introducción a la Sociología", id: "intro" },
+    { nombre: "Sociedad Colombiana del Siglo XIX", id: "sigloxix" },
+    { nombre: "Software Aplicado a las Ciencias Sociales", id: "software" },
+    { nombre: "Estructura de la Sociedad Moderna I", id: "modernai" },
+    { nombre: "Inglés I", id: "ingle1" }
   ],
   "2° semestre": [
-    { nombre: "Anatomía estructural y funcional 2", id: "anato2", prerreq: ["anato1"] },
-    { nombre: "Fisiología General", id: "fisioGeneral", prerreq: ["bioquimica", "fisica"] },
-    { nombre: "Neuroanatomía", id: "neuroanato" },
-    { nombre: "Biomecánica, Lesión y Reparación Tisular", id: "biomecanica", prerreq: ["tisular"] },
-    { nombre: "Introducción al estudio del Movimiento Humano", id: "movimiento" },
-    { nombre: "Principios de Evolución", id: "evolucion" },
-    { nombre: "Lectura Comprensiva de Artículos Científicos", id: "lecturaComprensiva" }
+    { nombre: "Análisis de Datos Cuantitativos", id: "datos" },
+    { nombre: "Sociedad Colombiana del Siglo XX", id: "sigloxx" },
+    { nombre: "Teoría Sociológica: Durkheim", id: "durkheim" },
+    { nombre: "Estructura de la Sociedad Moderna II", id: "modernaii" },
+    { nombre: "Inglés II", id: "ingle2" }
   ],
   "3° semestre": [
     { nombre: "Fisiología de Sistemas", id: "fisioSistemas", prerreq: ["fisioGeneral"] },
