@@ -2,7 +2,8 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f5f5f5;
+    background-color: #2c2c2c;
+    color: #e0e0e0;
 }
 
 .container {
@@ -12,61 +13,67 @@ body {
 
 h1 {
     text-align: center;
-    color: #333;
+    color: #e0e0e0;
     margin-bottom: 30px;
 }
 
 #malla {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
     padding: 20px 0;
 }
 
 .semestre {
-    min-width: 300px;
-    background: white;
+    background: #3a3a3a;
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    border: 1px solid #4a4a4a;
 }
 
 .semestre h2 {
     text-align: center;
-    color: #2c3e50;
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 10px;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    border-bottom: 2px solid #5a5a5a;
+    padding-bottom: 8px;
 }
 
 .ramo {
-    background: #ecf0f1;
-    margin: 10px 0;
-    padding: 15px;
+    background: #4a4a4a;
+    margin: 8px 0;
+    padding: 12px;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    border-left: 4px solid #bdc3c7;
-    font-size: 0.9em;
+    border-left: 4px solid #6a6a6a;
+    font-size: 0.85em;
     line-height: 1.3;
+    color: #e0e0e0;
 }
 
 .ramo:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    background: #5a5a5a;
 }
 
 .ramo.aprobado {
-    background: #d5edf3;
-    border-left-color: #27ae60;
-    color: #2c3e50;
+    background: #4a5a4a;
+    border-left-color: #6a8a6a;
+    color: #d0e0d0;
+}
+
+.ramo.aprobado:hover {
+    background: #5a6a5a;
 }
 
 .ramo.bloqueado {
-    background: #f8d7da;
-    border-left-color: #e74c3c;
-    color: #721c24;
+    background: #5a4a4a;
+    border-left-color: #8a6a6a;
+    color: #e0d0d0;
     cursor: not-allowed;
     opacity: 0.7;
 }
@@ -74,11 +81,12 @@ h1 {
 .ramo.bloqueado:hover {
     transform: none;
     box-shadow: none;
+    background: #5a4a4a;
 }
 
 .creditos {
-    font-size: 0.8em;
-    color: #7f8c8d;
+    font-size: 0.75em;
+    color: #b0b0b0;
     margin-top: 5px;
 }
 
@@ -94,6 +102,7 @@ h1 {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #e0e0e0;
 }
 
 .leyenda-color {
@@ -103,27 +112,29 @@ h1 {
 }
 
 .disponible { 
-    background: #ecf0f1; 
-    border-left: 4px solid #bdc3c7; 
+    background: #4a4a4a; 
+    border-left: 4px solid #6a6a6a; 
 }
 
 .aprobado-leyenda { 
-    background: #d5edf3; 
-    border-left: 4px solid #27ae60; 
+    background: #4a5a4a; 
+    border-left: 4px solid #6a8a6a; 
 }
 
 .bloqueado-leyenda { 
-    background: #f8d7da; 
-    border-left: 4px solid #e74c3c; 
+    background: #5a4a4a; 
+    border-left: 4px solid #8a6a6a; 
 }
 
 .stats {
     text-align: center;
     margin-bottom: 20px;
     padding: 15px;
-    background: white;
+    background: #3a3a3a;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    color: #e0e0e0;
+    border: 1px solid #4a4a4a;
 }
 
 .stats span {
@@ -131,18 +142,159 @@ h1 {
     font-weight: bold;
 }
 
-.reset-btn {
-    display: block;
-    margin: 20px auto;
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.reset-btn, .print-btn {
     padding: 10px 20px;
-    background: #e74c3c;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.reset-btn {
+    background: #6a4a4a;
+    color: #e0e0e0;
 }
 
 .reset-btn:hover {
-    background: #c0392b;
+    background: #8a6a6a;
+}
+
+.print-btn {
+    background: #4a6a4a;
+    color: #e0e0e0;
+}
+
+.print-btn:hover {
+    background: #6a8a6a;
+}
+
+/* Estilos para impresión */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+        font-size: 12px;
+    }
+    
+    .container {
+        max-width: none;
+        margin: 0;
+    }
+    
+    .buttons-container {
+        display: none;
+    }
+    
+    #malla {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        padding: 10px 0;
+    }
+    
+    .semestre {
+        background: white;
+        border: 1px solid #333;
+        padding: 10px;
+        box-shadow: none;
+        break-inside: avoid;
+    }
+    
+    .semestre h2 {
+        color: black;
+        border-bottom: 1px solid #333;
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+    
+    .ramo {
+        background: #f5f5f5;
+        color: black;
+        padding: 8px;
+        margin: 5px 0;
+        font-size: 0.8em;
+        border-left: 3px solid #bbb;
+    }
+    
+    .ramo.aprobado {
+        background: #e8f5e8;
+        border-left-color: #4a8a4a;
+    }
+    
+    .ramo.bloqueado {
+        background: #f5e8e8;
+        border-left-color: #8a4a4a;
+    }
+    
+    .creditos {
+        color: #666;
+    }
+    
+    .leyenda {
+        margin-bottom: 15px;
+    }
+    
+    .leyenda-item {
+        color: black;
+    }
+    
+    .stats {
+        background: #f5f5f5;
+        color: black;
+        border: 1px solid #333;
+        margin-bottom: 15px;
+    }
+    
+    h1 {
+        color: black;
+        margin-bottom: 15px;
+    }
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    #malla {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    
+    .semestre {
+        padding: 12px;
+    }
+    
+    .ramo {
+        padding: 10px;
+        font-size: 0.8em;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .reset-btn, .print-btn {
+        width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    #malla {
+        grid-template-columns: 1fr;
+    }
+    
+    .leyenda {
+        gap: 15px;
+    }
+    
+    .stats span {
+        margin: 0 10px;
+        font-size: 0.9em;
+    }
 }
